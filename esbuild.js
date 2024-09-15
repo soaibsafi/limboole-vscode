@@ -1,4 +1,6 @@
 const esbuild = require("esbuild");
+const fs = require('fs');
+const path = require('path');
 
 const production = process.argv.includes('--production');
 const watch = process.argv.includes('--watch');
@@ -23,6 +25,31 @@ const esbuildProblemMatcherPlugin = {
 	},
 };
 
+/**
+ * @type {import('esbuild').Plugin}
+ */
+const copyLibPlugin = {
+  name: 'copy-lib',
+  setup(build) {
+    build.onEnd(() => {
+      const srcDir = path.join(__dirname, 'lib');
+      const destDir = path.join(__dirname, 'dist', 'lib');
+
+      if (!fs.existsSync(destDir)) {
+        fs.mkdirSync(destDir, { recursive: true });
+      }
+
+      fs.readdirSync(srcDir).forEach(file => {
+        const srcFile = path.join(srcDir, file);
+        const destFile = path.join(destDir, file);
+        fs.copyFileSync(srcFile, destFile);
+      });
+
+      console.log('Copied lib directory to dist/lib');
+    });
+  }
+};
+
 async function main() {
 	const ctx = await esbuild.context({
 		entryPoints: [
@@ -40,6 +67,7 @@ async function main() {
 		plugins: [
 			/* add to the end of plugins array */
 			esbuildProblemMatcherPlugin,
+			copyLibPlugin,
 		],
 	});
 	if (watch) {

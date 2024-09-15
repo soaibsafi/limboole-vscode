@@ -1,3 +1,4 @@
+.github/
 .vscode/
 out/**
 node_modules/**
@@ -12,3 +13,4 @@ vsc-extension-quickstart.md
 **/*.ts
 **/.vscode-test.*
 resources/
+lib/
