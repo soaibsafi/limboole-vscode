@@ -2,7 +2,7 @@
   "name": "limboole",
   "displayName": "Limboole",
   "description": "A VS Code extension for Limboole. For more information, visit https://fmv.jku.at/limboole/",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "publisher": "Soaibuzzaman",
   "engines": {
     "vscode": "^1.8.0"
