@@ -1,5 +1,12 @@
 # Change Log
 
+## [0.2.0] - 2024-09-20
+
+- Added bacic support for language server protocol
+
+## [0.1.2] - 2024-09-15
+
+- Added limboole executables
 
 ## [0.1.0] - 2024-09-15
 
@@ -8,11 +15,3 @@
 - Added support for CNF translation
 - Added support for running Limboole from command palette
 - Added support for setting path to Limboole executable in settings
-
-## [0.1.2] - 2024-09-15
-
-- Added limboole executables
-
-## [0.2.0] - 2024-09-20
-
-- Added bacic support for language server protocol
