@@ -18,7 +18,10 @@ For `.limboole` files, you can check satisfiability and validity of the formula 
 
 ## Requirements
 
-This extension is packaged with Limboole executable for Windows, Linux, and macOS. If you have different operating system, you can download the latest version from the [Limboole website](https://fmv.jku.at/limboole/) and set the path to the executable in the settings.
+- This extension is packaged with Limboole executable for Windows, Linux, and macOS. If you have different operating system, you can download the latest version from the [Limboole website](https://fmv.jku.at/limboole/) and set the path to the executable in the settings.
+
+- Java 11 or higher is required to run the language server. Without Java, the extension will still work, but you won't get the language server features.
+
 
 ## Settings
 
@@ -27,6 +30,8 @@ You can set the path to the Limboole executable in the settings. Open the settin
 ## Known Issues
 
 The extension is tested on Windows and Linux. Unfortunately, I don't have access to macOS, so I can't test it there. If you encounter any issues, please report them on [GitHub](https://github.com/soaibsafi/limboole-vscode/issues) or open a PR.
+
+
 
 ## License
 

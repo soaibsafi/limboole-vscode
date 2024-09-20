@@ -3,8 +3,47 @@ import { exec } from 'child_process';
 import * as fs from 'fs';
 import * as path from 'path';
 import * as os from 'os';
+import {
+	LanguageClient, 
+	LanguageClientOptions, 
+	ServerOptions, 
+	TransportKind
+} from 'vscode-languageclient/node';
+
+let client: LanguageClient;
 
 export function activate(context: vscode.ExtensionContext) {
+
+	const serverOption: ServerOptions = {
+		run: {
+			command: 'java',
+			args: [
+				'-jar',
+				path.join(__dirname, 'lib', 'fm.limboole.ide-0.2.0-ls.jar')
+			],
+			transport: TransportKind.stdio
+		},
+		debug: {
+			command: 'java',
+			args: [
+				'-jar',
+				path.join(__dirname, 'lib', 'fm.limboole.ide-0.2.0-ls.jar')
+			],
+			transport: TransportKind.stdio
+		}
+	};
+
+	const clientOptions: LanguageClientOptions = {
+		documentSelector: [{ scheme: 'file', language: 'limboole' }]
+	};
+
+	client = new LanguageClient(
+		'limbooleLanguageServer',
+		'Limboole Language Server',
+		serverOption,
+		clientOptions
+	);
+	client.start();
 
 	let panel: vscode.WebviewPanel | undefined;
 
@@ -126,7 +165,12 @@ async function runLimboole(limboolePath: string, code: string, check: string) {
 	});
 }
 
-export function deactivate() { }
+export function deactivate(): Thenable<void> { 
+	if (!client) {
+		return Promise.resolve();
+	}
+	return client.stop();
+}
 
 class LimbooleCodeLensProvider implements vscode.CodeLensProvider {
 	provideCodeLenses(document: vscode.TextDocument, token: vscode.CancellationToken): vscode.CodeLens[] {
