@@ -1,5 +1,10 @@
 # Change Log
 
+## [0.2.0] - 2024-10-06
+- Added support for language server protocol with Langium
+- Removed Xtext support
+- No need for Java runtime anymore
+
 ## [0.2.0] - 2024-09-20
 
 - Added bacic support for language server protocol

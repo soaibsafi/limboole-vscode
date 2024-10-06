@@ -2,17 +2,46 @@
   "name": "limboole",
   "displayName": "Limboole",
   "description": "A VS Code extension for Limboole. For more information, visit https://fmv.jku.at/limboole/",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "publisher": "Soaibuzzaman",
   "engines": {
     "vscode": "^1.8.0"
+  },
+  "type": "module",
+  "scripts": {
+    "build": "tsc -b tsconfig.src.json && node esbuild.mjs",
+    "watch": "concurrently -n tsc,esbuild -c blue,yellow \"tsc -b tsconfig.src.json --watch\" \"node esbuild.mjs --watch\"",
+    "lint": "eslint src",
+    "langium:generate": "langium generate",
+    "langium:watch": "langium generate --watch",
+    "vscode:prepublish": "npm run build && npm run lint",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "langium": "~3.2.0",
+    "vscode-languageclient": "~9.0.1",
+    "vscode-languageserver": "~9.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "@typescript-eslint/parser": "~7.3.1",
+    "@typescript-eslint/eslint-plugin": "~7.3.1",
+    "eslint": "~8.57.0",
+    "langium-cli": "~3.2.0",
+    "typescript": "~5.1.6",
+    "@types/vscode": "~1.82.0",
+    "concurrently": "~8.2.1",
+    "esbuild": "~0.20.2",
+    "vitest": "~1.4.0"
+  },
+  "volta": {
+    "node": "18.19.1",
+    "npm": "10.2.4"
   },
   "categories": [
     "Programming Languages",
     "Education"
   ],
-  "activationEvents": [],
-  "main": "./dist/extension.js",
   "contributes": {
     "languages": [
       {
@@ -31,7 +60,7 @@
       {
         "language": "limboole",
         "scopeName": "source.limboole",
-        "path": "./syntaxes/limboole.tmLanguage.json"
+        "path": "syntaxes/limboole.tmLanguage.json"
       }
     ],
     "configuration": {
@@ -79,34 +108,6 @@
     "url": "https://github.com/soaibsafi/limboole-vscode/issues"
   },
   "homepage": "https://github.com/soaibsafi/limboole-vscode/#readme",
-  "scripts": {
-    "vscode:prepublish": "npm run package",
-    "compile": "npm run check-types && npm run lint && node esbuild.js",
-    "watch": "npm-run-all -p watch:*",
-    "watch:esbuild": "node esbuild.js --watch",
-    "watch:tsc": "tsc --noEmit --watch --project tsconfig.json",
-    "package": "npm run check-types && npm run lint && node esbuild.js --production",
-    "compile-tests": "tsc -p . --outDir out",
-    "watch-tests": "tsc -p . -w --outDir out",
-    "pretest": "npm run compile-tests && npm run compile && npm run lint",
-    "check-types": "tsc --noEmit",
-    "lint": "eslint src",
-    "test": "vscode-test"
-  },
-  "devDependencies": {
-    "@types/mocha": "^10.0.7",
-    "@types/node": "20.x",
-    "@types/vscode": "^1.8.0",
-    "@typescript-eslint/eslint-plugin": "^8.3.0",
-    "@typescript-eslint/parser": "^8.3.0",
-    "@vscode/test-cli": "^0.0.10",
-    "@vscode/test-electron": "^2.4.1",
-    "esbuild": "^0.23.1",
-    "eslint": "^9.9.1",
-    "npm-run-all": "^4.1.5",
-    "typescript": "^5.5.4"
-  },
-  "dependencies": {
-    "vscode-languageclient": "^9.0.1"
-  }
+  "activationEvents": [],
+  "main": "./out/extension/main.cjs"
 }

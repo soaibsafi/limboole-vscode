@@ -1,60 +1,32 @@
 {
+  "name": "limboole",
   "scopeName": "source.limboole",
+  "fileTypes": [
+    ".limboole"
+  ],
   "patterns": [
     {
-      "include": "#whitespace"
+      "include": "#comments"
     },
     {
-      "include": "#comment"
-    },
-    {
-      "include": "#operators"
-    },
-    {
-      "include": "#symbols"
+      "name": "keyword.control.limboole",
+      "match": "!|&|->|<-|<->|\\|"
     }
   ],
   "repository": {
-    "whitespace": {
+    "comments": {
       "patterns": [
         {
-          "name": "white",
-          "match": "[ \t\r\n]+"
-        }
-      ]
-    },
-    "comment": {
-      "patterns": [
-        {
-          "name": "comment.line.limboole",
-          "match": "^%.*$"
-        }
-      ]
-    },
-    "operators": {
-      "patterns": [
-        {
-          "name": "keyword.operator.assignment.limboole",
-          "match": "<->|->|<-"
-        },
-        {
-          "name": "keyword.operator.logical.limboole",
-          "match": "&|\\||!"
-        },
-        {
-          "name": "keyword.operator.arithmetic.limboole",
-          "match": "/"
-        }
-      ]
-    },
-    "symbols": {
-      "patterns": [
-        {
-          "name": "constant.language.limboole",
-          "match": "\\.\\.|[=><!:&|\\+\\-*/,;]"
+          "begin": "%",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.whitespace.comment.leading.limboole"
+            }
+          },
+          "end": "(?=$)",
+          "name": "comment.line.limboole"
         }
       ]
     }
-  },
-  "fileTypes": ["limboole"]
+  }
 }
