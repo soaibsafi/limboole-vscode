@@ -2,7 +2,7 @@
   "name": "limboole",
   "displayName": "Limboole",
   "description": "A VS Code extension for Limboole. For more information, visit https://fmv.jku.at/limboole/",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "publisher": "Soaibuzzaman",
   "engines": {
     "vscode": "^1.8.0"
@@ -24,6 +24,7 @@
   },
   "devDependencies": {
     "@types/node": "^18.0.0",
+    "@types/vscode": "^1.8.0",
     "@typescript-eslint/parser": "~7.3.1",
     "@typescript-eslint/eslint-plugin": "~7.3.1",
     "eslint": "~8.57.0",
