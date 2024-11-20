@@ -1,6 +1,12 @@
 # Change Log
 
-## [0.2.0] - 2024-10-06
+## [v0.4.0] - 2024-11-20
+- Added typo validation in limboole by @azaddima
+
+## [v0.3.1] - 2024-10-06
+- Added generated AST and grammar
+
+## [0.3.0] - 2024-10-06
 - Added support for language server protocol with Langium
 - Removed Xtext support
 - No need for Java runtime anymore
